@@ -8,6 +8,6 @@ This allows us to:
 
 1. Only perform the message expansion phase of SHA1 once per 5 character suffix for each set of 32 stems.
 2. Compute 4 hashes (1 suffix added to 4 different stems) at a time using SSE2 Vectorization.
-3. Precompute some of the expanded message for the suffixe blocks since we know what they will look like (always 5 characters)
+3. Precompute some of the expanded message for the suffix blocks since we know what they will look like (always 5 characters)
 
 
