@@ -1,0 +1,13 @@
+This is most of the code I wrote for Enginge Yard's July 2009 SHA1 Hashing Contest.  The consumer can do about 12M/keys/core (Xeon 2.33Ghz)
+
+It uses Amazon's SQS for distributing the work units and results. 
+
+The processor takes 32 64-character stems (the length of a single SHA1 block).  It appends the 5 extra character suffix to each of those stems in an attempt to find a low hamming distance.
+
+This allows us to:
+
+1. Only perform the message expansion phase of SHA1 once per 5 character suffix for each set of 32 stems.
+2. Compute 4 hashes (1 suffix added to 4 different stems) at a time using SSE2 Vectorization.
+3. Precompute some of the expanded message for the suffixe blocks since we know what they will look like (always 5 characters)
+
+
